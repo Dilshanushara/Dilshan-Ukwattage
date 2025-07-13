@@ -1,58 +1,81 @@
-// Smooth scroll navigation and active link
-document.querySelectorAll('nav a.nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            e.preventDefault();
-            window.scrollTo({
-                top: target.offsetTop - 60,
-                behavior: 'smooth'
-            });
-        }
-    });
+// Hamburger menu functionality
+const navToggleBtn = document.getElementById('navToggleBtn');
+const navLinks = document.querySelector('nav ul');
+navToggleBtn?.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
 });
 
-window.addEventListener('scroll', () => {
-    // Highlight active nav link
-    const sections = document.querySelectorAll('main section');
-    const scrollPos = window.scrollY + 75;
-    let found = false;
-    sections.forEach((sec, idx) => {
-        if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            document.querySelectorAll('nav a')[idx].classList.add('active');
-            found = true;
-        }
-    });
-    if (!found) {
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-        document.querySelector('nav a[href="#about"]').classList.add('active');
+// Close menu after clicking a link (on mobile)
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 700) {
+      navLinks.classList.remove('open');
     }
-    // Show/hide scroll-to-top button
-    document.getElementById('scrollTopBtn').style.display = window.scrollY > 300 ? 'block' : 'none';
-    // Section reveal effect
-    document.querySelectorAll('section').forEach(sec => {
-        const rect = sec.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 70) {
-            sec.classList.add('reveal');
-        }
-    });
+  });
 });
 
 // Scroll to top button
-document.getElementById('scrollTopBtn').onclick = () => {
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+        scrollTopBtn.style.display = 'block';
+    } else {
+        scrollTopBtn.style.display = 'none';
+    }
+});
+scrollTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-};
+});
 
-// Project filtering
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const skill = this.dataset.skill;
-        document.querySelectorAll('.project-card').forEach(card => {
-            if (skill === 'all' || card.dataset.skills.includes(skill)) {
-                card.style.display = 'flex';
+// Section reveal on scroll
+const revealSections = document.querySelectorAll('section');
+function revealOnScroll() {
+    const triggerBottom = window.innerHeight * 0.92;
+    revealSections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < triggerBottom) {
+            section.classList.add('reveal');
+        }
+    });
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Navigation active link highlight
+const navLinksArr = Array.from(document.querySelectorAll('.nav-link'));
+window.addEventListener('scroll', () => {
+    let fromTop = window.scrollY + 120;
+    navLinksArr.forEach(link => {
+        let section = document.querySelector(link.getAttribute('href'));
+        if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+            navLinksArr.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        }
+    });
+});
+
+// Light/Dark mode
+const modeToggle = document.getElementById('mode-toggle');
+modeToggle.addEventListener('click', () => {
+    document.body.toggleAttribute('data-theme', 'dark');
+    if (document.body.getAttribute('data-theme') === 'dark') {
+        modeToggle.textContent = '☀️';
+    } else {
+        modeToggle.textContent = '🌙';
+    }
+});
+
+// Project filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const skill = btn.getAttribute('data-skill');
+        projectCards.forEach(card => {
+            if (skill === 'all' || card.getAttribute('data-skills').includes(skill)) {
+                card.style.display = '';
             } else {
                 card.style.display = 'none';
             }
@@ -60,63 +83,30 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
-// Light/dark mode toggle
-const modeBtn = document.getElementById('mode-toggle');
-const htmlEl = document.documentElement;
-const theme = localStorage.getItem('theme');
-if (theme) htmlEl.setAttribute('data-theme', theme);
+// Optionally: Fetch Medium posts (dummy loader in HTML, implement as needed)
 
-modeBtn.onclick = () => {
-    if (htmlEl.getAttribute('data-theme') === 'dark') {
-        htmlEl.setAttribute('data-theme', 'light');
-        modeBtn.textContent = '🌙';
-        localStorage.setItem('theme', 'light');
-    } else {
-        htmlEl.setAttribute('data-theme', 'dark');
-        modeBtn.textContent = '☀️';
-        localStorage.setItem('theme', 'dark');
+// Example Medium fetch:
+fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dilshanukwattage')
+  .then(response => response.json())
+  .then(data => {
+    if (data.items && Array.isArray(data.items)) {
+      const blogDiv = document.getElementById('medium-blogs');
+      blogDiv.innerHTML = '';
+      data.items.slice(0,3).forEach(post => {
+        const article = document.createElement('article');
+        article.className = 'blog-post';
+        article.innerHTML = `<h3><a href="${post.link}" target="_blank">${post.title}</a></h3>
+          <small>${new Date(post.pubDate).toLocaleDateString()}</small>
+          <p>${post.description.replace(/<[^>]+>/g, '').slice(0,120)}...</p>`;
+        blogDiv.appendChild(article);
+      });
     }
-};
-// Set initial mode button icon
-if (htmlEl.getAttribute('data-theme') === 'dark') modeBtn.textContent = '☀️';
+  });
 
-// Contact form handler
-document.getElementById('contact-form').onsubmit = function(e) {
+
+// Simple contact form handler (optional, just disables default)
+document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
-    const name = this.name.value.trim();
-    const email = this.email.value.trim();
-    const message = this.message.value.trim();
-    const subject = encodeURIComponent("Portfolio contact from " + name);
-    const body = encodeURIComponent(message + "\n\nFrom: " + name + " <" + email + ">");
-    window.location.href = `mailto:dilshanushara16@gmail.com?subject=${subject}&body=${body}`;
+    alert('Thank you for reaching out! I will get back to you soon.');
     this.reset();
-};
-
-
-// Medium Blog Fetcher
-(function fetchMediumBlogs() {
-    const container = document.getElementById('medium-blogs');
-    const mediumFeed = 'https://medium.com/feed/@dilshanukwattage';
-    // Use rss2json public API to convert RSS to JSON
-    const api = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(mediumFeed)}`;
-    fetch(api)
-        .then(response => response.json())
-        .then(data => {
-            if (!data.items || !data.items.length) throw new Error("No posts found.");
-            let html = '';
-            data.items.slice(0, 4).forEach(item => {
-                html += `
-                <article class="blog-post">
-                    <h3><a href="${item.link}" target="_blank" rel="noopener">${item.title}</a></h3>
-                    <small>${new Date(item.pubDate).toLocaleDateString()}</small>
-                    <p>${item.description.replace(/<[^>]+>/g, '').substring(0, 140)}...</p>
-                </article>`;
-            });
-            container.innerHTML = html;
-        })
-        .catch(() => {
-            container.innerHTML = `
-                <p>Unable to load Medium posts. See all my blogs on 
-                <a href="https://medium.com/@dilshanukwattage" target="_blank">Medium</a>.</p>`;
-        });
-})();
+});
