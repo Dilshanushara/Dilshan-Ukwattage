@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilshan's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">Dilshan Ukwattage</div>
+            <ul>
+                <li><a href="#about" class="nav-link active">About Me</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button id="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
+        </div>
+    </nav>
+    <header>
+        <div class="profile-img">
+            <img src="50502_Dilshan_Ukwattage.jpg" alt="Dilshan Ukwattage" />
+        </div>
+        <h1>Dilshan Ukwattage</h1>
+        <p>Software Engineer | Problem Solver | Tech Enthusiast</p>
+    </header>
+    <main>
+        <section id="about" class="reveal">
+            <h2>About Me</h2>
+            <p>
+                I’m an experienced Software Engineer with over 4 years of hands-on experience in developing and optimizing robust applications using Angular, TypeScript, C# .NET, Java, Python, MySQL, and Microservices architecture.<br><br>
+                I specialize in building scalable, high-performance systems and delivering clean, maintainable code that meets both technical and business needs. With a strong grasp of Agile methodologies, CI/CD pipelines, Git, and Jenkins, I thrive in collaborative environments and enjoy solving complex challenges.<br><br>
+                My passion lies in creating efficient solutions that enhance user experience, streamline operations, and drive innovation. I’m always eager to contribute to dynamic teams where I can continue to grow and make a meaningful impact through technology.
+            </p>
+        </section>
+        <section id="skills" class="reveal">
+            <h2>Skills</h2>
+            <ul class="skills-list">
+                <li>Angular</li>
+                <li>RxJS</li>
+                <li>TypeScript</li>
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS/SCSS</li>
+                <li>C#</li>
+                <li>.Net CORE</li>
+                <li>MySQL</li>
+                <li>Jenkins</li>
+            </ul>
+        </section>
+        <section id="projects" class="reveal">
+            <h2>Projects</h2>
+            <div class="project-filters">
+                <button class="filter-btn active" data-skill="all">All</button>
+                <button class="filter-btn" data-skill="Angular">Angular</button>
+                <button class="filter-btn" data-skill="Java">Java</button>
+                <button class="filter-btn" data-skill="Python">Python</button>
+            </div>
+            <div class="projects-container">
+                <div class="project-card" data-skills="Angular,TypeScript">
+                    <h3>Task Manager App</h3>
+                    <p>A productivity web app built with Angular and TypeScript for efficient task tracking and collaboration.</p>
+                    <a href="#" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project-card" data-skills="Java,MySQL">
+                    <h3>Inventory System</h3>
+                    <p>Java-based inventory management system with MySQL backend, supporting CRUD and real-time reporting.</p>
+                    <a href="#" target="_blank">View on GitHub</a>
+                </div>
+                <div class="project-card" data-skills="Python">
+                    <h3>Data Analyzer</h3>
+                    <p>Python tool for analyzing large datasets and visualizing insights, with a focus on usability and speed.</p>
+                    <a href="#" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+        <section id="resume" class="reveal">
+            <h2>Resume</h2>
+            <div class="resume-download-block">
+                <div class="resume-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                        <rect width="24" height="24" rx="6" fill="#2563eb" opacity="0.12"/>
+                        <path d="M12 16V8M12 16l-3-3m3 3l3-3" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="6" y="18" width="12" height="2" rx="1" fill="#2563eb"/>
+                    </svg>
+                </div>
+                <p>Download my latest CV as a PDF:</p>
+                <a href="Dilshan Ukwattage Full Stack Engineer Resume.pdf" download class="resume-download-btn">
+                    ⬇️ Download CV (PDF)
+                </a>
+            </div>
+        </section>
+        <section id="certifications" class="reveal">
+            <h2>Certifications</h2>
+            <div class="cert-card">
+                <div class="cert-icon">
+                    <!-- Angular SVG logo -->
+                    <svg width="38" height="38" viewBox="0 0 250 250" fill="none">
+                        <polygon points="125,20 230,56 205,214 125,250 45,214 20,56" fill="#E23237"/>
+                        <polygon points="125,36 211,63 192,206 125,230 58,206 39,63" fill="#B52E31"/>
+                        <path d="M125,60 L85,180 H105 L112,160 H138 L145,180 H165 L125,60 Z M125,95 L137,130 H113 L125,95 Z" fill="#fff"/>
+                    </svg>
+                </div>
+                <div>
+                    <h3>Certified Mid-Level Angular Developer</h3>
+                    <p>
+                        <strong>Provider:</strong> Certificates.dev & AngularTraining.com<br>
+                        <strong>Issued:</strong> July 2024<br>
+                        <a href="https://api.certificates.dev/certificates/9f119a61-5960-4509-9c32-eea40a5b33c9/download?signature=3b5627a2623bd9a10e39a2188b845ec76a374858206647d4875af7be72caa63e" target="_blank" class="cert-link">View Certification</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="blog" class="reveal">
+            <h2>Blog</h2>
+            <div id="medium-blogs">
+                <p>Loading latest posts from <a href="https://medium.com/@dilshanukwattage" target="_blank">Medium</a>...</p>
+            </div>
+        </section>
+        <section id="contact" class="reveal">
+            <h2>Contact</h2>
+            <div class="contact-wrapper">
+                <form id="contact-form">
+                    <h3>Send a Message</h3>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. John Doe" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                    </div>
+                    <button type="submit"><span class="btn-icon">📨</span>Send Message</button>
+                </form>
+                <div class="contact-alt">
+                    <h3>Connect With Me</h3>
+                    <div class="contact-link email">
+                        <span class="icon" aria-label="Email">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <rect width="24" height="24" rx="6" fill="#2563eb" opacity="0.12"/>
+                                <path d="M4 6.5V17.5C4 18.0523 4.44772 18.5 5 18.5H19C19.5523 18.5 20 18.0523 20 17.5V6.5M4 6.5L12 13.5L20 6.5M4 6.5H20" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                        <a href="mailto:dilshanushara16@gmail.com">dilshanushara16@gmail.com</a>
+                    </div>
+                    <div class="contact-link linkedin">
+                        <span class="icon" aria-label="LinkedIn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <rect width="24" height="24" rx="6" fill="#0A66C2" opacity="0.12"/>
+                                <path d="M6.16 8.8H9.04V17.2H6.16V8.8ZM7.6 7.28C8.44 7.28 9.08 6.64 9.08 5.8C9.08 4.96 8.44 4.32 7.6 4.32C6.76 4.32 6.12 4.96 6.12 5.8C6.12 6.64 6.76 7.28 7.6 7.28ZM12.16 10.32H15.04V11.44H15.08C15.4 10.8 16.16 10.12 17.28 10.12C19.24 10.12 19.6 11.4 19.6 13.04V17.2H16.72V13.52C16.72 12.64 16.7 11.48 15.52 11.48C14.32 11.48 14.12 12.52 14.12 13.44V17.2H11.24V10.32H12.16Z" fill="#0A66C2"/>
+                            </svg>
+                        </span>
+                        <a href="https://www.linkedin.com/in/dilshan-ukwattage-11133217a/" target="_blank">Dilshan Ukwattage</a>
+                    </div>
+                    <div class="contact-link github">
+                        <span class="icon" aria-label="GitHub">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <rect width="24" height="24" rx="6" fill="#171515" opacity="0.12"/>
+                                <path d="M12 2C6.48 2 2 6.58 2 12.24C2 16.62 4.87 20.26 8.84 21.5C9.34 21.59 9.52 21.3 9.52 21.05C9.52 20.83 9.51 20.2 9.51 19.38C6.73 19.93 6.14 17.96 6.14 17.96C5.68 16.84 5.03 16.55 5.03 16.55C4.12 15.91 5.11 15.93 5.11 15.93C6.13 16 6.65 17.02 6.65 17.02C7.56 18.65 9.09 18.2 9.66 17.96C9.75 17.15 10.07 16.63 10.43 16.32C8.33 16.07 6.13 15.32 6.13 11.91C6.13 10.89 6.53 10.06 7.17 9.4C7.07 9.15 6.72 8.12 7.26 6.79C7.26 6.79 8.04 6.53 9.51 7.42C10.24 7.21 11.03 7.1 11.82 7.1C12.61 7.1 13.4 7.21 14.13 7.42C15.6 6.53 16.38 6.79 16.38 6.79C16.92 8.12 16.57 9.15 16.47 9.4C17.11 10.06 17.51 10.89 17.51 11.91C17.51 15.33 15.3 16.06 13.19 16.31C13.63 16.68 14.02 17.42 14.02 18.51C14.02 20.05 14 20.77 14 21.05C14 21.3 14.18 21.6 14.69 21.5C18.66 20.26 21.53 16.62 21.53 12.24C21.53 6.58 17.05 2 12 2Z" fill="#171515"/>
+                            </svg>
+                        </span>
+                        <a href="https://github.com/Dilshanushara" target="_blank">Dilshanushara</a>
+                    </div>
+                    <div class="contact-link medium">
+                        <span class="icon" aria-label="Medium">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                                <rect width="24" height="24" rx="6" fill="#00ab6c" opacity="0.12"/>
+                                <ellipse cx="7.5" cy="12" rx="3.5" ry="6" fill="#00ab6c"/>
+                                <ellipse cx="14.5" cy="12" rx="2.5" ry="6" fill="#00ab6c"/>
+                                <ellipse cx="19" cy="12" rx="1" ry="6" fill="#00ab6c"/>
+                            </svg>
+                        </span>
+                        <a href="https://medium.com/@dilshanukwattage" target="_blank">Medium</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <button id="scrollTopBtn" title="Back to top">↑</button>
+    <footer>
+        <p>&copy; 2025 Dilshan Ukwattage</p>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>
