@@ -56,12 +56,22 @@ window.addEventListener('scroll', () => {
 
 // Light/Dark mode
 const modeToggle = document.getElementById('mode-toggle');
+const htmlEl = document.documentElement; // <html> element
+
+// Set initial icon on page load
+if (htmlEl.getAttribute('data-theme') === 'dark') {
+    modeToggle.textContent = '☀️';
+} else {
+    modeToggle.textContent = '🌙';
+}
+
 modeToggle.addEventListener('click', () => {
-    document.body.toggleAttribute('data-theme', 'dark');
-    if (document.body.getAttribute('data-theme') === 'dark') {
-        modeToggle.textContent = '☀️';
-    } else {
+    if (htmlEl.getAttribute('data-theme') === 'dark') {
+        htmlEl.removeAttribute('data-theme');
         modeToggle.textContent = '🌙';
+    } else {
+        htmlEl.setAttribute('data-theme', 'dark');
+        modeToggle.textContent = '☀️';
     }
 });
 
@@ -83,22 +93,32 @@ filterBtns.forEach(btn => {
     });
 });
 
-// Optionally: Fetch Medium posts (dummy loader in HTML, implement as needed)
 
-// Example Medium fetch:
+// Fetch Medium RSS and render custom summary
 fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dilshanukwattage')
   .then(response => response.json())
   .then(data => {
     if (data.items && Array.isArray(data.items)) {
-      const blogDiv = document.getElementById('medium-blogs');
-      blogDiv.innerHTML = '';
-      data.items.slice(0,3).forEach(post => {
-        const article = document.createElement('article');
-        article.className = 'blog-post';
-        article.innerHTML = `<h3><a href="${post.link}" target="_blank">${post.title}</a></h3>
-          <small>${new Date(post.pubDate).toLocaleDateString()}</small>
-          <p>${post.description.replace(/<[^>]+>/g, '').slice(0,120)}...</p>`;
-        blogDiv.appendChild(article);
+      const blogsContainer = document.getElementById('blogs-container');
+      blogsContainer.innerHTML = '';
+      data.items.slice(0, 4).forEach(post => {
+        // Remove HTML tags and limit summary to 20 words
+        const plainText = post.description.replace(/<[^>]+>/g, '');
+        const words = plainText.split(/\s+/).filter(Boolean);
+        const summary = words.slice(0, 20).join(' ') + (words.length > 20 ? '...' : '');
+
+        const card = document.createElement('div');
+        card.className = 'blog-card';
+        card.innerHTML = `
+          <h3>
+            <a href="${post.link}" target="_blank">${post.title}</a>
+          </h3>
+          <div style="font-size:0.97em;color:var(--primary-light);margin-bottom:0.5em;">
+            by ${post.author} &middot; ${new Date(post.pubDate).toLocaleDateString()}
+          </div>
+          <p>${summary}</p>
+        `;
+        blogsContainer.appendChild(card);
       });
     }
   });

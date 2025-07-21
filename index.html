@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="dark" lang="en"></html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dilshan's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dilshan's Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <div class="nav-brand">Dilshan Ukwattage</div>
-            <button class="nav-toggle" aria-label="Open navigation" id="navToggleBtn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul>
-                <li><a href="#about" class="nav-link active">About Me</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#resume" class="nav-link">Resume</a></li>
-                <li><a href="#certifications" class="nav-link">Certifications</a></li>
-                <li><a href="#blog" class="nav-link">Blog</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <button id="mode-toggle" aria-label="Toggle light/dark mode">🌙</button>
-        </div>
-    </nav>
+  <!-- Responsive Navbar Start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="#">Dilshan Ukwattage</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <button id="mode-toggle" class="btn btn-outline-primary ms-3" type="button" aria-label="Toggle light/dark mode">🌙</button>
+      </div>
+    </div>
+  </nav>
     <header>
         <div class="profile-img">
             <img src="50502_Dilshan_Ukwattage.jpg" alt="Dilshan Ukwattage" />
@@ -46,6 +49,7 @@
         </section>
         <section id="skills" class="reveal">
             <h2>Skills</h2>
+            <h3>Technical Skills</h3>
             <ul class="skills-list">
                 <li>Angular</li>
                 <li>RxJS</li>
@@ -58,6 +62,18 @@
                 <li>MySQL</li>
                 <li>Jenkins</li>
             </ul>
+            <h3>Soft Skills</h3>
+            <ul class="skills-list">
+                <li>Effective Communication</li>
+                <li>Teamwork & Collaboration</li>
+                <li>Problem Solving</li>
+                <li>Adaptability</li>
+                <li>Time Management</li>
+                <li>Critical Thinking</li>
+                <li>Leadership</li>
+                <li>Attention to Detail</li>
+                <li>Continuous Learning</li>
+            </ul>
         </section>
         <section id="projects" class="reveal">
             <h2>Projects</h2>
@@ -67,7 +83,7 @@
                 <button class="filter-btn" data-skill="Java">Java</button>
                 <button class="filter-btn" data-skill="Python">Python</button>
             </div>
-            <div class="projects-container">
+            <!-- <div class="projects-container">
                 <div class="project-card" data-skills="Angular,TypeScript">
                     <h3>Task Manager App</h3>
                     <p>A productivity web app built with Angular and TypeScript for efficient task tracking and collaboration.</p>
@@ -83,7 +99,7 @@
                     <p>Python tool for analyzing large datasets and visualizing insights, with a focus on usability and speed.</p>
                     <a href="#" target="_blank">View on GitHub</a>
                 </div>
-            </div>
+            </div> -->
         </section>
         <section id="resume" class="reveal">
             <h2>Resume</h2>
@@ -116,16 +132,16 @@
                     <h3>Certified Mid-Level Angular Developer</h3>
                     <p>
                         <strong>Provider:</strong> Certificates.dev & AngularTraining.com<br>
-                        <strong>Issued:</strong> July 2024<br>
+                        <strong>Issued:</strong> July 2025<br>
                         <a href="https://api.certificates.dev/certificates/9f119a61-5960-4509-9c32-eea40a5b33c9/download?signature=3b5627a2623bd9a10e39a2188b845ec76a374858206647d4875af7be72caa63e" target="_blank" class="cert-link">View Certification</a>
                     </p>
                 </div>
             </div>
         </section>
         <section id="blog" class="reveal">
-            <h2>Blog</h2>
-            <div id="medium-blogs">
-                <p>Loading latest posts from <a href="https://medium.com/@dilshanukwattage" target="_blank">Medium</a>...</p>
+            <h2>Blogs</h2>
+            <div class="blogs-container" id="blogs-container">
+                <!-- Blog cards will be inserted here dynamically -->
             </div>
         </section>
         <section id="contact" class="reveal">
@@ -199,6 +215,7 @@
     <footer>
         <p>&copy; 2025 Dilshan Ukwattage</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
