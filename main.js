@@ -1,15 +1,20 @@
-// Hamburger menu functionality
-const navToggleBtn = document.getElementById('navToggleBtn');
-const navLinks = document.querySelector('nav ul');
-navToggleBtn?.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
+// Bootstrap Navbar: Remove focus from toggler after click/tap (accessibility)
+document.querySelector('.navbar-toggler')?.addEventListener('click', function() {
+  this.blur();
 });
 
-// Close menu after clicking a link (on mobile)
-document.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth <= 700) {
-      navLinks.classList.remove('open');
+// Bootstrap Navbar: Smooth scroll & collapse navbar on mobile after clicking a link
+document.querySelectorAll('.navbar-nav .nav-link').forEach(function(link) {
+  link.addEventListener('click', function(e) {
+    if (this.hash && document.querySelector(this.hash)) {
+      e.preventDefault();
+      document.querySelector(this.hash).scrollIntoView({behavior:'smooth', block:'start'});
+      // Collapse navbar on mobile after click
+      const navbarCollapse = document.getElementById('mainNavbar');
+      if (window.innerWidth < 992 && navbarCollapse.classList.contains('show')) {
+        const collapse = bootstrap.Collapse.getOrCreateInstance(navbarCollapse);
+        collapse.hide();
+      }
     }
   });
 });
@@ -93,7 +98,6 @@ filterBtns.forEach(btn => {
     });
 });
 
-
 // Fetch Medium RSS and render custom summary
 fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dilshanukwattage')
   .then(response => response.json())
@@ -122,7 +126,6 @@ fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dil
       });
     }
   });
-
 
 // Simple contact form handler (optional, just disables default)
 document.getElementById('contact-form').addEventListener('submit', function(e) {
