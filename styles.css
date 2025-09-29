@@ -298,9 +298,10 @@ h2 {
     margin-bottom: 1.2em;
     font-size: 1.13em;
 }
+/* Modern, theme-aware, non-duplicated button */
 .resume-download-btn {
-    background: linear-gradient( var(--text));
-    color: var(--text);
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    color: #fff;
     border: none;
     padding: 0.9em 2.2em;
     border-radius: 12px;
@@ -308,14 +309,31 @@ h2 {
     font-weight: bold;
     cursor: pointer;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
     box-shadow: 0 4px 16px #2563eb22;
     letter-spacing: 0.03em;
     display: inline-block;
+    text-align: center;
+    margin-top: 0.7em;
 }
-.resume-download-btn:hover {
+.resume-download-btn:hover,
+.resume-download-btn:focus {
     background: linear-gradient(90deg, var(--primary-light), var(--primary));
-    color: var(--text);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 8px 24px #2563eb35;
+    text-decoration: none;
+}
+/* DARK THEME: Ensure button stays vibrant and readable */
+[data-theme="dark"] .resume-download-btn {
+    color: #fff;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    box-shadow: 0 4px 16px #0ea5e922;
+}
+[data-theme="dark"] .resume-download-btn:hover,
+[data-theme="dark"] .resume-download-btn:focus {
+    background: linear-gradient(90deg, var(--primary-light), var(--primary));
+    color: #fff;
 }
 
 /* CERTIFICATIONS */
@@ -412,13 +430,13 @@ h2 {
   color: #38bdf8;
 }
 
-
 /* CONTACT */
+/* Center the contact card and limit max-width for desktop */
 .contact-wrapper {
     display: flex;
-    gap: 2em;
-    justify-content: space-between;
-    align-items: stretch;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0; /* Remove side gap for single card */
     margin-top: 1.5em;
     flex-wrap: wrap;
 }
@@ -435,7 +453,6 @@ h2 {
     animation: fadeInUp 1.1s;
     border: 2px solid var(--primary-light);
 }
-
 #contact-form {
     margin-right: 0.2em;
     background: var(--card-bg);
@@ -509,7 +526,12 @@ h2 {
 
 /* CONNECT BUTTONS - SOFT COLORS, RESPONSIVE */
 .contact-alt {
-    margin-left: 0.2em;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    padding: 2em 1em 1.4em 1em;
+    align-items: stretch;
     background: var(--card-bg);
     border: 2px solid var(--primary-light);
     box-shadow: 0 6px 18px #2563eb10;
@@ -543,6 +565,7 @@ h2 {
     transition: background 0.2s, box-shadow 0.15s, border 0.15s, color 0.15s, transform 0.15s;
     width: 100%;
     max-width: 370px;
+    box-sizing: border-box;
 }
 .contact-link .icon {
     display: flex;
@@ -630,7 +653,6 @@ footer {
 }
 
 /* MEDIA QUERIES FOR RESPONSIVENESS */
-
 @media (max-width: 900px) {
     .contact-wrapper {
         flex-direction: column;
@@ -730,4 +752,27 @@ footer {
     .cert-card {
         padding: 1em 0.2em 0.7em 0.2em;
     }
+}
+
+/* --- CONTACT SECTION RESPONSIVENESS & CENTERING --- */
+/* Already handled and merged above */
+
+/* On small screens, reduce card padding and space */
+@media (max-width: 600px) {
+    .contact-alt {
+        padding: 1.2em 0.5em 1em 0.5em;
+        max-width: 98vw;
+    }
+    .contact-link {
+        font-size: 0.99em;
+        padding: 0.45em 0.5em 0.45em 0.5em;
+    }
+    #contact h2 {
+        font-size: 1.17em;
+    }
+}
+
+/* Ensure contact section aligns center on all screens */
+#contact {
+    text-align: center;
 }
