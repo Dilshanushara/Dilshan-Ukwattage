@@ -128,8 +128,29 @@ fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@dil
   });
 
 // Simple contact form handler (optional, just disables default)
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+document.getElementById('contact-form')?.addEventListener('submit', function(e) {
     e.preventDefault();
     alert('Thank you for reaching out! I will get back to you soon.');
     this.reset();
 });
+
+// Animate skill progress bars when they come into view
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    skillBars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        
+        if (rect.top < windowHeight && rect.bottom > 0) {
+            const level = bar.getAttribute('data-level');
+            if (level && !bar.classList.contains('animated')) {
+                bar.style.width = level + '%';
+                bar.classList.add('animated');
+            }
+        }
+    });
+}
+
+// Add skill bar animation to scroll listener
+window.addEventListener('scroll', animateSkillBars);
+window.addEventListener('load', animateSkillBars);
